@@ -9,13 +9,16 @@ class V1UsersController extends AuthController {
 
   index() {
 
-    User.query()
-      .where(this.params.query)
-      .end((err, models) => {
+    this.authorize((accessToken, user) => {
+      console.log('before query');
+      User.query()
+        .where(this.params.query)
+        .end((err, models) => {
+          console.log('inside a query');
+          this.respond(err || models);
 
-        this.respond(err || models);
-
-      });
+        });
+    })
 
   }
 

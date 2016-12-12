@@ -33,11 +33,14 @@
         {"name": "last_name", "type": "string", "properties": {}},
         {"name": "first_name", "type": "string", "properties": {}},
         {"name": "dob", "type": "string", "properties": {}},
-        {"name": "address", "type": "string", "properties": {}},
+        {"name": "street", "type": "string", "properties": {}},
+        {"name": "city", "type": "string", "properties": {}},
+        {"name": "state", "type": "string", "properties": {}},
+        {"name": "zip", "type": "string", "properties": {}},
         {"name": "income", "type": "int", "properties": {}},
         {"name": "gender", "type": "string", "properties": {}},
         {"name": "race", "type": "string", "properties": {}},
-        {"name": "veteran", "type": "boolean", "properties": {}},
+        {"name": "veteran", "type": "string", "properties": {}},
         {"name": "created_at", "type": "datetime", "properties": {}},
         {"name": "updated_at", "type": "datetime", "properties": {}}
       ]
