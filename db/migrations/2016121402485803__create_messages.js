@@ -12,7 +12,7 @@ class CreateMessages extends Nodal.Migration {
   up() {
 
     return [
-      this.createTable("messages", [{"name":"from_id","type":"int"},{"name":"to_id","type":"int"},{"name":"body","type":"string"},{"name":"room_id","type":"int"}])
+      this.createTable("messages", [{"name":"from_id","type":"int"},{"name":"from_username","type":"string"},{"name":"body","type":"string"},{"name":"room_id","type":"int"}])
     ];
 
   }

@@ -28,7 +28,7 @@
       "columns": [
         {"name": "id", "type": "serial", "properties": {"nullable":false,"primary_key":true,"auto_increment":true}},
         {"name": "from_id", "type": "int", "properties": {}},
-        {"name": "to_id", "type": "int", "properties": {}},
+        {"name": "from_username", "type": "string", "properties": {}},
         {"name": "body", "type": "string", "properties": {}},
         {"name": "room_id", "type": "int", "properties": {}},
         {"name": "created_at", "type": "datetime", "properties": {}},
