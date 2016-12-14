@@ -1,6 +1,12 @@
 {
 
-  "development": {},
+  "development": {
+    "User": [{
+      "email": "admin@gmail.com",
+      "username": "admin",
+      "password": "password"
+    }]
+  },
 
   "test": {},
 
