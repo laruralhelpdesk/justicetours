@@ -26,7 +26,8 @@ class CreateUsers extends Nodal.Migration {
         {"name":"income","type":"int"},
         {"name":"gender","type":"string"},
         {"name":"race","type":"string"},
-        {"name":"veteran","type":"string"}
+        {"name":"veteran","type":"string"},
+        {"name":"category","type":"string"}
       ])
     ];
 
