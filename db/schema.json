@@ -57,6 +57,7 @@
         {"name": "gender", "type": "string", "properties": {}},
         {"name": "race", "type": "string", "properties": {}},
         {"name": "veteran", "type": "string", "properties": {}},
+        {"name": "category", "type": "string", "properties": {}},
         {"name": "created_at", "type": "datetime", "properties": {}},
         {"name": "updated_at", "type": "datetime", "properties": {}}
       ]
