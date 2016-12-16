@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "bcryptjs": "^2.3.0",
+    "faker": "^3.1.0",
     "nodal": "0.12.10"
   },
   "devDependencies": {
