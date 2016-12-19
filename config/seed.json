@@ -5,19 +5,25 @@
       {
         "email": "admin@gmail.com",
         "username": "admin",
-        "password": "password"
+        "password": "password",
+        "first_name": "Attorney",
+        "last_name": "General"
       },
       {
         "email": "test@test.com",
         "username": "testing",
         "password": "password",
-        "category": "divorce"
+        "category": "divorce",
+        "first_name": "Francis",
+        "last_name": "Cummerata"
       },
       {
         "email": "test2@test.com",
         "username": "testing2",
-        "password": "password2",
-        "category": "custody"
+        "password": "password",
+        "category": "custody",
+        "first_name": "Jaren",
+        "last_name": "Kunze"
       }
     ]
   },
@@ -29,19 +35,25 @@
       {
         "email": "admin@gmail.com",
         "username": "admin",
-        "password": "password"
+        "password": "password",
+        "first_name": "Attorney",
+        "last_name": "General"
       },
       {
         "email": "test@test.com",
         "username": "testing",
         "password": "password",
-        "category": "divorce"
+        "category": "firstName",
+        "first_name": "Francis",
+        "last_name": "Cummerata"
       },
       {
         "email": "test2@test.com",
         "username": "testing2",
-        "password": "password2",
-        "category": "custody"
+        "password": "password",
+        "category": "custody",
+        "first_name": "Jaren",
+        "last_name": "Kunze"
       }
     ]
   }
