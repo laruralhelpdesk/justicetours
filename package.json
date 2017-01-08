@@ -10,7 +10,8 @@
   "dependencies": {
     "bcryptjs": "^2.3.0",
     "faker": "^3.1.0",
-    "nodal": "0.12.10"
+    "nodal": "0.12.10",
+    "node-mandrill": "^1.0.1"
   },
   "devDependencies": {
     "chai": "~3.5.0",
