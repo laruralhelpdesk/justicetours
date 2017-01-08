@@ -1,8 +1,8 @@
 'use strict';
 
 const Nodal = require('nodal');
-const mandrill = require('node-mandrill')('TZYJUTXyRMwLJGqLSzbP-g');
-
+const mandrill = require('node-mandrill')(process.env.MANDRILL_API);
+const User = Nodal.require('app/models/user.js');
 
 class V1MailerController extends Nodal.Controller {
 
@@ -13,33 +13,40 @@ class V1MailerController extends Nodal.Controller {
   }
 
   post() {
-    // TODO: configure this once on a proper domain
-    var that = this;
-    console.log(this.params, "this is params");
-    console.log(this.params.query, "this is params.query");
+    // TODO: confirm if works once on a proper domain
+    const that = this;
+    let text = '', subject= '', message = {};
     console.log('post in mailer hit');
-    const message = {
-      message: {
-          to: [{email: 'ali@operationspark.org', name: 'Shams Ali'}],
-          from_email: 'ali@operationspark.org',
-          subject: "Hey, what's up?",
-          text: "Hello, I sent this message using mandrill."
+    User.find(this.params.route.id, (err, model) => {
+      if (this.params.query.type === 'newChat') {
+        text = JSON.stringify(model._data);
+        subject = `${model._data.first_name} Just Entered A Chat!`;
       }
-    };
+      // TODO: change email and name
+      message.message = {
+        to: [{email: 'ali@operationspark.org', name: 'Shams Ali'}],
+        from_email: model._data.email,
+        subject: subject,
+        text: text
+      };
 
-    mandrill('/messages/send', message, function(error, response){
+      mandrill('/messages/send', message, function(error, response){
         console.log('mandrill hit');
-        //uh oh, there was an error
         if (error){
           error = JSON.stringify(error)
           console.log(error);
           that.respond({message: error})
-        } else {
+        } else if (response[0].status === "rejected"){
           console.log(response)
+          that.respond({error: response});
+        } else {
           that.respond({message: response});
         }
+      });
+      console.log('after mandrill');
+
     });
-    console.log('after mandrill');
+
 
   }
 
