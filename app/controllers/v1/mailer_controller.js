@@ -2,6 +2,8 @@
 
 const Nodal = require('nodal');
 const mandrill = require('node-mandrill')(process.env.MANDRILL_API);
+const emailTo = process.env.EMAIL_TO;
+const emailFrom = process.env.EMAIL_FROM;
 const User = Nodal.require('app/models/user.js');
 const Message = Nodal.require('app/models/message.js');
 const _ = require('underscore');
@@ -25,8 +27,8 @@ class V1MailerController extends Nodal.Controller {
         subject = `${model._data.first_name} Just Entered A Chat!`;
         // TODO: change email and name
         message.message = {
-          to: [{email: 'ali@operationspark.org', name: 'Shams Ali'}],
-          from_email: 'ali@operationspark.org',
+          to: [{email: emailTo, name: 'Virtual Legal Help Desk'}],
+          from_email: emailFrom,
           subject: subject,
           text: text
         };
@@ -59,16 +61,16 @@ class V1MailerController extends Nodal.Controller {
               body: curr._data.body
             });
           }, []));
-        subject = 'Chat Logs';
-        // TODO: change email and name
-        message.message = {
-          to: [{email: 'ali@operationspark.org', name: 'Shams Ali'}],
-          from_email: 'ali@operationspark.org',
-          subject: subject,
-          text: text
-        };
+          subject = 'Chat Logs';
+          // TODO: change email and name
+          message.message = {
+            to: [{email: emailTo, name: 'Virtual Legal Help Desk'}],
+            from_email: emailFrom,
+            subject: subject,
+            text: text
+          };
 
-        this.respond(err || models);
+          this.respond(err || models);
 
       });
 
