@@ -25,7 +25,7 @@ class V1MailerController extends Nodal.Controller {
 
         // Format email message into string
         text = _.reduce(model._data, (prev, value, key) =>
-          key === 'password' || key === 'id' ? prev : `${prev}, ${key}: ${value}`, '').slice(2);
+          key === 'password' || key === 'id' ? prev : `${prev}<div>${key}: ${value}</div>`, '');
 
         subject = `${model._data.first_name} Just Entered A Chat!`;
 
