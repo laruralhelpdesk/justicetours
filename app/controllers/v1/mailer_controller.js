@@ -17,24 +17,27 @@ class V1MailerController extends Nodal.Controller {
   }
 
   post() {
-    // TODO: confirm if works once on a proper domain
+    console.log('Post In Mailer');
     const that = this;
     let text = '', subject= '', message = {};
-    console.log('post in mailer hit');
     if (this.params.query.type === 'newChat') {
       User.find(this.params.route.id, (err, model) => {
-        text = JSON.stringify(model._data);
+
+        // Format email message into string
+        text = _.reduce(model._data, (prev, value, key) =>
+          key === 'password' || key === 'id' ? prev : `${prev}, ${key}: ${value}`, '').slice(2);
+
         subject = `${model._data.first_name} Just Entered A Chat!`;
-        // TODO: change email and name
+
         message.message = {
           to: [{email: emailTo, name: 'Virtual Legal Help Desk'}],
           from_email: emailFrom,
           subject: subject,
-          text: text
+          html: text
         };
 
         mandrill('/messages/send', message, function(error, response){
-          console.log('mandrill hit');
+          console.log('Mandrill Sending: ', message.message.html);
           if (error){
             error = JSON.stringify(error)
             console.log(error);
@@ -46,7 +49,6 @@ class V1MailerController extends Nodal.Controller {
             that.respond({message: response});
           }
         });
-        console.log('after mandrill');
 
       });
     } else if (this.params.query.room_id) {
@@ -54,7 +56,7 @@ class V1MailerController extends Nodal.Controller {
       Message.query()
         .where(this.params.query)
         .end((err, models) => {
-          // console.log(models[0])
+          console.log('Mailer for chat logs');
           text = JSON.stringify(_.reduce(models, function(prev, curr){
             return prev.concat({
               from_username: curr._data.from_username,
@@ -69,6 +71,7 @@ class V1MailerController extends Nodal.Controller {
             subject: subject,
             text: text
           };
+          console.log('Mesage to send created: ', subject, text);
 
           this.respond(err || models);
 
