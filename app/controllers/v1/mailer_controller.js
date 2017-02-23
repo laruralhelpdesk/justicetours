@@ -33,7 +33,7 @@ class V1MailerController extends Nodal.Controller {
           to: [{email: emailTo, name: 'Virtual Legal Help Desk'}],
           from_email: emailFrom,
           subject: subject,
-          html: text
+          html: `<p>${text}<p>`
         };
 
         mandrill('/messages/send', message, function(error, response){
