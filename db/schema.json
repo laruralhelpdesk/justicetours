@@ -28,7 +28,6 @@
       "columns": [
         {"name": "id", "type": "serial", "properties": {"nullable":false,"primary_key":true,"auto_increment":true}},
         {"name": "from_id", "type": "int", "properties": {}},
-        {"name": "from_username", "type": "string", "properties": {}},
         {"name": "from_firstName", "type": "string", "properties": {}},
         {"name": "from_lastName", "type": "string", "properties": {}},
         {"name": "body", "type": "string", "properties": {}},
@@ -45,9 +44,9 @@
 
       "columns": [
         {"name": "id", "type": "serial", "properties": {"nullable":false,"primary_key":true,"auto_increment":true}},
-        {"name": "email", "type": "string", "properties": {"unique":true}},
+        {"name": "email", "type": "string", "properties": {}},
+        {"name": "phone", "type": "int", "properties": {}},
         {"name": "password", "type": "string", "properties": {}},
-        {"name": "username", "type": "string", "properties": {}},
         {"name": "last_name", "type": "string", "properties": {}},
         {"name": "first_name", "type": "string", "properties": {}},
         {"name": "dob", "type": "string", "properties": {}},
