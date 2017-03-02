@@ -22,12 +22,12 @@ class V1MailerController extends Nodal.Controller {
     let text = '', subject= '', message = {};
     if (this.params.query.type === 'newChat') {
       User.find(this.params.route.id, (err, model) => {
+        subject = `${model._data.first_name} Just Entered A Chat!`;
 
         // Format email message into string
         text = _.reduce(model._data, (prev, value, key) =>
           key === 'password' || key === 'id' ? prev : `${prev}<div>${key}: ${value}</div>`, '');
 
-        subject = `${model._data.first_name} Just Entered A Chat!`;
 
         message.message = {
           to: [{email: emailTo, name: 'Virtual Legal Help Desk'}],
@@ -52,28 +52,35 @@ class V1MailerController extends Nodal.Controller {
 
       });
     } else if (this.params.query.room_id) {
+      subject = 'Chat Logs';
 
       Message.query()
         .where(this.params.query)
         .end((err, models) => {
-          console.log('Mailer for chat logs');
-          text = JSON.stringify(_.reduce(models, function(prev, curr){
-            return prev.concat({
-              from_username: curr._data.from_username,
-              body: curr._data.body
-            });
-          }, []));
-          subject = 'Chat Logs';
-          // TODO: change email and name
+          text = _.reduce(models, (prev, curr) =>
+            `${prev}<div>${curr._data.from_username}: ${curr._data.body}</div>`, '');
+
           message.message = {
             to: [{email: emailTo, name: 'Virtual Legal Help Desk'}],
             from_email: emailFrom,
             subject: subject,
-            text: text
+            html: text
           };
           console.log('Mesage to send created: ', subject, text);
 
-          this.respond(err || models);
+          mandrill('/messages/send', message, function(error, response){
+            console.log('Mandrill Sending: ', message.message.html);
+            if (error){
+              error = JSON.stringify(error)
+              console.log(error);
+              that.respond({message: error})
+            } else if (response[0].status === "rejected"){
+              console.log(response)
+              that.respond({error: response});
+            } else {
+              that.respond({message: response});
+            }
+          });
 
       });
 
