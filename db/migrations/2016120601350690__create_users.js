@@ -14,8 +14,9 @@ class CreateUsers extends Nodal.Migration {
     return [
       this.createTable("users", [
         {"name":"email","type":"string"},
-        {"name":"phone","type":"int"},
+        {"name":"phone","type":"string"},
         {"name":"password","type":"string"},
+        {"name":"username","type":"string"},
         {"name":"last_name","type":"string"},
         {"name":"first_name","type":"string"},
         {"name":"dob","type":"string"},
