@@ -33,9 +33,9 @@
   "production": {
     "User": [
       {
-        "email": "admin@gmail.com",
-        "username": "admin",
-        "password": "password",
+        "email": "lcjcruralhelpdesk@gmail.com",
+        "username": "lcjcruralhelpdesk",
+        "password": "8003107029",
         "first_name": "Attorney",
         "last_name": "General"
       },
@@ -43,7 +43,7 @@
         "email": "test@test.com",
         "username": "testing",
         "password": "password",
-        "category": "firstName",
+        "category": "divorce",
         "first_name": "Francis",
         "last_name": "Cummerata"
       },

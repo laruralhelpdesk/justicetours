@@ -27,7 +27,7 @@ class AccessToken extends Nodal.Model {
       .end((err, users) => {
 
         if (err || !users || !users.length) {
-
+          
           return callback(new Error('User not found'));
 
         }

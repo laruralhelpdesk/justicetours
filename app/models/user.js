@@ -41,7 +41,8 @@ class User extends Nodal.Model {
 User.setDatabase(Nodal.require('db/main.js'));
 User.setSchema(Nodal.my.Schema.models.User);
 
-User.validates('email', 'must be valid', v => v && (v + '').match(/.+@.+\.\w+/i));
+// TODO: Told does not want to require email
+// User.validates('email', 'must be valid', v => v && (v + '').match(/.+@.+\.\w+/i));
 User.validates('password', 'must be at least 5 characters in length', v => v && v.length >= 5);
 User.hides('password');
 module.exports = User;
