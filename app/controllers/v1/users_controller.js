@@ -9,17 +9,11 @@ class V1UsersController extends AuthController {
 
   index() {
 
-    this.authorize((accessToken, user) => {
-      console.log('before query');
-      User.query()
-        .where(this.params.query)
-        .end((err, models) => {
-          console.log('inside a query');
-          this.respond(err || models);
-
-        });
-    })
-
+    User.query()
+      .where(this.params.query)
+      .end((err, models) => {
+        this.respond(err || models);
+      });
   }
 
   show() {
@@ -34,9 +28,8 @@ class V1UsersController extends AuthController {
 
   create() {
 
-    console.log('creating user');
     User.create(this.params.body, (err, model) => {
-      console.error(err);
+
       this.respond(err || model);
 
     });
@@ -48,7 +41,6 @@ class V1UsersController extends AuthController {
     this.authorize((accessToken, user) => {
 
       User.update(user._data.id, this.params.body, (err, model) => {
-
 
         this.respond(err || model);
 
